@@ -157,14 +157,14 @@ postgresql_users:
 
 # (optional) list of databases to be created (if not already exists)
 postgresql_databases: #[]
-  - { db: "weather", encoding: "UTF8", lc_collate: "ru_RU.UTF-8", lc_ctype: "ru_RU.UTF-8", owner: "mydb-user" }
+  - { db: "weather", encoding: "UTF8", lc_collate: "en_US.UTF-8", lc_ctype: "en_US.UTF-8", owner: "postgres" }
 #  - { db: "mydatabase2", encoding: "UTF8", lc_collate: "ru_RU.UTF-8", lc_ctype: "ru_RU.UTF-8", owner: "mydb-user", conn_limit: "50" }
 #  - { db: "", encoding: "UTF8", lc_collate: "en_US.UTF-8", lc_ctype: "en_US.UTF-8", owner: "" }
 #  - { db: "", encoding: "UTF8", lc_collate: "en_US.UTF-8", lc_ctype: "en_US.UTF-8", owner: "" }
 
 # (optional) list of schemas to be created (if not already exists)
-postgresql_schemas: #[]
-  - { schema: "myschema", db: "mydatabase", owner: "mydb-user" }
+postgresql_schemas: []
+#  - { schema: "myschema", db: "mydatabase", owner: "mydb-user" }
 
 # (optional) list of database extensions to be created (if not already exists)
 postgresql_extensions: []
@@ -278,7 +278,7 @@ postgresql_pg_hba:
   - { type: "host", database: "all", user: "{{ pgbouncer_auth_username }}", address: "127.0.0.1/32", method: "trust" } # required for pgbouncer auth_user
   - { type: "host", database: "all", user: "all", address: "127.0.0.1/32", method: "{{ postgresql_password_encryption_algorithm }}" }
   - { type: "host", database: "all", user: "all", address: "::1/128", method: "{{ postgresql_password_encryption_algorithm }}" }
-#  - { type: "host", database: "mydatabase", user: "mydb-user", address: "192.168.0.0/24", method: "{{ postgresql_password_encryption_algorithm }}" }
+  - { type: "host", database: "all", user: "all", address: "10.0.10.0/24", method: "{{ postgresql_password_encryption_algorithm }}" }
 #  - { type: "host", database: "all", user: "all", address: "192.168.0.0/24", method: "ident", options: "map=main" }  # use pg_ident
 
 # list of lines that Patroni will use to generate pg_ident.conf

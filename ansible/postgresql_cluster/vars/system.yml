@@ -126,7 +126,7 @@ sudo_users:
 
 
 # Firewall
-firewall_enabled_at_boot: false  # or 'true' for configure firewall (iptables)
+firewall_enabled_at_boot: true  # or 'true' for configure firewall (iptables)
 
 firewall_allowed_tcp_ports_for:
   master: []
@@ -170,6 +170,10 @@ firewall_additional_rules_for:
   balancers:
     - "iptables -p vrrp -A INPUT -j ACCEPT"  # Keepalived (vrrp)
     - "iptables -p vrrp -A OUTPUT -j ACCEPT"  # Keepalived (vrrp)
+    - "iptables -s 10.0.10.0/24 -I INPUT -j ACCEPT"	# allow from LAN
+    - "iptables -s 79.165.203.134 -I INPUT -j ACCEPT" 	# allow from home
+    - "iptables -s 100.64.0.0/10 -I INPUT -j ACCEPT"	# allow from k8s
+    - "iptables -P INPUT DROP"				# drop from elsewhere
 
 # disable firewalld (installed by default on RHEL/CentOS) or ufw (installed by default on Ubuntu)
 firewall_disable_firewalld: true

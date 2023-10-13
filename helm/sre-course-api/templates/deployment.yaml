@@ -21,7 +21,7 @@ spec:
       {{- end }}
       labels:
         {{- include "sre-course-api.labels" . | nindent 8 }}
-	{{- with .Values.podLabels }}
+        {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
@@ -38,6 +38,16 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: DOTNET_ENVIRONMENT
+            value: DEVELOPMENT
+          - name: ASPNETCORE_URLS
+            value: http://*:8082
+          - name: CONNECTIONSTRINGS__PGCONNECTION
+            value: server=91.185.84.206; port=5000; database=weather; user id=postgres; password=postgres-pass;
+#          envFrom:
+#          - configMapRef:
+#            name: {{ include "sre-course-api.fullname" . }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -53,13 +63,10 @@ spec:
               path: /healthz/ready
               port: http
             initialDelaySeconds: 1
-            #periodSeconds: 3
+            periodSeconds: 3
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
-          envFrom:
-          - configMapRef:
-              name: {{ include "sre-course-api.fullname" . }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}

@@ -18,14 +18,15 @@ serviceAccount:
   # Specifies whether a service account should be created
   create: false
   # Automatically mount a ServiceAccount's API credentials?
-  automount: false
+  automount: true
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations: {}
+podAnnotations: #{}
+  vault.security.banzaicloud.io/vault-role: deepfence
 podLabels: {}
 
 podSecurityContext: {}
@@ -61,7 +62,7 @@ ingress:
 
 variables:
   ASPNETCORE_URLS: http://*:8082
-  CONNECTIONSTRINGS__PGCONNECTION: server=REDACTED; port=5000; database=weather; user id=postgress; password=postgress-pass;
+  CONNECTIONSTRINGS__PGCONNECTION: server=91.185.84.206; port=5000; database=weather; user id=postgress; password=postgress-pass;
   #ConnectionStrings__PgConnection: server=10.0.10.3; port=5000; database=weather; user id=postgress; password=postgress-pass;
 
 resources: #{}
