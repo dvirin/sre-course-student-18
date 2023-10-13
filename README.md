@@ -4,9 +4,8 @@
   * Для развертывания требуются шесть ВМ в одной приватной сети - db1, db2, etcd1, etcd2, etcd3, balancer.
   * На ВМ db1 и db2 требуется минимум 2GB RAM.
   * На ВМ balancer требуется публичный IP.
-  * Доступ из интернета к публичному IP балансера ограничен правилами iptables в 
+  * Доступ из интернета к публичному IP балансера ограничен правилами iptables в [/ansible/postgresql_cluster/vars/system.yml](/ansible/postgresql_cluster/vars/system.yml)
   ```
-    /ansible/postgresql_cluster/vars/system.yml
       firewall_additional_rules_for:
         balancers:
   ```
