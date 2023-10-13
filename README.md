@@ -16,7 +16,7 @@
   
 * В папке [/helm](/helm) - helm-chart для разворачивания api в неймспейсе sre-cource-student-18
   * Параметры подключения api к БД задаются в [/helm/sre-course-api/templates/deployment.yaml](/helm/sre-course-api/templates/deployment.yaml)
-  * в spec: containers: env: name: CONNECTIONSTRINGS__PGCONNECTION
+  * в переменной spec: containers: env: name: CONNECTIONSTRINGS__PGCONNECTION
   * в формате 
   ``` value: server=IP; port=5000; database=weather; user id=postgres; password=postgres-pass; ```
   , где IP - публичный адрес балансировщика.
