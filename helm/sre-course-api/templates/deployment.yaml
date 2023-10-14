@@ -15,10 +15,8 @@ spec:
       {{- include "sre-course-api.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        rollme: {{ randAlphaNum 5 | quote }}
       labels:
         {{- include "sre-course-api.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}

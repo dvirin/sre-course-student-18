@@ -25,8 +25,8 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations: #{}
-  vault.security.banzaicloud.io/vault-role: deepfence
+podAnnotations: {}
+#  vault.security.banzaicloud.io/vault-role: deepfence
 podLabels: {}
 
 podSecurityContext: {}
@@ -61,8 +61,8 @@ ingress:
   #      - chart-example.local
 
 variables:
-  ASPNETCORE_URLS: http://*:8082
-  CONNECTIONSTRINGS__PGCONNECTION: server=91.185.84.206; port=5000; database=weather; user id=postgress; password=postgress-pass;
+  #ASPNETCORE_URLS: http://*:8082
+  #CONNECTIONSTRINGS__PGCONNECTION: server=91.185.84.206; port=5000; database=weather; user id=postgress; password=postgress-pass;
   #ConnectionStrings__PgConnection: server=10.0.10.3; port=5000; database=weather; user id=postgress; password=postgress-pass;
 
 resources: #{}
