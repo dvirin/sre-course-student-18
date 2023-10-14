@@ -173,6 +173,7 @@ firewall_additional_rules_for:
     - "iptables -s 10.0.10.0/24 -I INPUT -j ACCEPT"	# allow from LAN
     - "iptables -s 79.165.203.134 -I INPUT -j ACCEPT" 	# allow from home
     - "iptables -s 100.64.0.0/10 -I INPUT -j ACCEPT"	# allow from k8s
+    - "iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT" # allow established
     - "iptables -P INPUT DROP"				# drop from elsewhere
 
 # disable firewalld (installed by default on RHEL/CentOS) or ufw (installed by default on Ubuntu)
