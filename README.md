@@ -9,12 +9,13 @@
       firewall_additional_rules_for:
         balancers:
   ```
-    * Плейбуки
-      * первичной установки - deploy_pgcluster.yml
-      * изменения конфигурации - config_pgcluster.yml
-    * Код и документация исходного проекта - https://github.com/vitabaks/postgresql_cluster
+  * Плейбуки
+    * первичной установки - deploy_pgcluster.yml
+      * При отсутствии БД weather создает пустую БД. 
+    * изменения конфигурации - config_pgcluster.yml
+  * Код и документация исходного проекта - https://github.com/vitabaks/postgresql_cluster
   
-* В папке [/helm](/helm) - helm-chart для разворачивания api в неймспейсе sre-cource-student-18
+* В папке [/helm](/helm) - helm-chart для разворачивания sre-course-api
   * Параметры подключения api к БД задаются в [/helm/sre-course-api/templates/deployment.yaml](/helm/sre-course-api/templates/deployment.yaml)
   * в переменной spec: containers: env: name: CONNECTIONSTRINGS__PGCONNECTION
   * в формате 
